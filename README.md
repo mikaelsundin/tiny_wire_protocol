@@ -1,18 +1,24 @@
 # Tiny Wire Protocol
-A protocol to read/write 16bit data to registers on multiple nodes over UART.
+A protocol to read/write 16bit data to registers/memory on multiple nodes over UART.
 Inspired from COBS.
 
+Require only total 8 bytes including packet delimitor.
+
+
 # Specifications
-* 10bit Node addressing
+* 8bit Node addressing
 * 16bit Address range
-* 16bit Data
+* 16bit Data read/write
 * Write with ack with possible of error code
 * Read with response with possible for error code.
 * Fixed size packet size of 8 bytes.
 * Extension flag make it possible to extend the protocol in the future.
 
-# Protocol
+# Extension
+Current no extensions is defined.
 
+
+# Protocol
 
 ---
 
@@ -25,20 +31,25 @@ Inspired from COBS.
 ---
 
 ## Byte 0 — HEADER
+The header is constructed to not use 0x00.
 
 | Bit  | Description                               |
 |------|-------------------------------------------|
 | 7    | Request(0) / Response(1)                  |
 | 6    | REQ: Ack (0=Off,1=On) / RESP: Error flag  |
 | 5    | Function (0=Write, 1=Read)                |
-| 4..3 | Node‑ID bit 9,8                           |
-| 2..0 | Zero‑pointer                              |
+| 4    | Extension (0=no extension, 1=extension)   |
+| 3..0 | Zero‑pointer/Extension-args               |
 
-Zero-pointer is set to 0x00 when calculating the CRC-8
+Bits 3..0 is set to 0x00 when calculating the CRC-8
 
-Zero‑pointer range: `0x01`–`0x07`  
+Zero-pointer (extension=0):
+Points to next zero in message, 
+zero-pointer range: 0x01 to 0x0F
 
-Reserved extension pattern: bits 5..0 = `0b11000`
+Extension (extension=1):
+Used for future proof the protocol
+Extension-args range: 0x00 to 0x0F
 
 ---
 
@@ -46,7 +57,7 @@ Reserved extension pattern: bits 5..0 = `0b11000`
 
 | Bits | Description                       |
 |------|-----------------------------------|
-| 7…0  | Node‑ID bits 0..7                 |
+| 7…0  | Node‑ID bits                      |
 
 ---
 
