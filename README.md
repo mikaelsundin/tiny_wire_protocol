@@ -34,7 +34,10 @@ Inspired from COBS.
 | 4..3 | Node‑ID bit 9,8                           |
 | 2..0 | Zero‑pointer                              |
 
+Zero-pointer is set to 0x00 when calculating the CRC-8
+
 Zero‑pointer range: `0x01`–`0x07`  
+
 Reserved extension pattern: bits 5..0 = `0b11000`
 
 ---
@@ -83,4 +86,4 @@ Reserved extension pattern: bits 5..0 = `0b11000`
 
 | Bits | Description                       |
 |------|-----------------------------------|
-| 7…0  | CRC8/SMBUS over bytes 0–6         |
+| 7…0  | CRC8/SMBUS over bytes 0–5         |
