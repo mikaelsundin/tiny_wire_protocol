@@ -41,46 +41,46 @@ Reserved extension pattern: bits 5..0 = `0b11000`
 
 ## Byte 1 — Node‑ID
 
-| Byte | Bits | Description                       |
-|------|------|-----------------------------------|
-| 1    | 7…0  | Node‑ID bits 0..7                 |
+| Bits | Description                       |
+|------|-----------------------------------|
+| 7…0  | Node‑ID bits 0..7                 |
 
 ---
 
 ## Byte 2 — ADR‑HI
 
-| Byte | Bits | Description                       |
-|------|------|-----------------------------------|
-| 2    | 7…0  | Register address MSB              |
+| Bits | Description                       |
+|------|-----------------------------------|
+| 7…0  | Register address MSB              |
 
 ---
 
 ## Byte 3 — ADR‑LO
 
-| Byte | Bits | Description                       |
-|------|------|-----------------------------------|
-| 3    | 7…0  | Register address LSB              |
+| Bits | Description                       |
+|------|-----------------------------------|
+| 7…0  | Register address LSB              |
 
 ---
 
 ## Byte 4 — DATA‑HI (lower 7 bits)
 
-| Byte | Bits | Description                       |
-|------|------|-----------------------------------|
-| 4    | 7…0  | DATA MSB (7‑bit) / Error MSB      |
+| Bits | Description                       |
+|------|-----------------------------------|
+| 7…0  | DATA MSB (7‑bit) / Error MSB      |
 
 ---
 
 ## Byte 5 — DATA‑LO (lower 7 bits)
 
-| Byte | Bits | Description                       |
-|------|------|-----------------------------------|
-| 5    | 7…0  | DATA LSB (7‑bit) / Error LSB      |
+| Bits | Description                       |
+|------|-----------------------------------|
+| 7…0  | DATA LSB (7‑bit) / Error LSB      |
 
 ---
 
 ## Byte 6 — CRC8/SMBUS
 
-| Byte | Bits | Description                       |
-|------|------|-----------------------------------|
-| 6    | 7…0  | CRC8/SMBUS over bytes 0–6         |
+| Bits | Description                       |
+|------|-----------------------------------|
+| 7…0  | CRC8/SMBUS over bytes 0–6         |
