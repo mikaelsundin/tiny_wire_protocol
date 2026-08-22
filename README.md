@@ -7,11 +7,11 @@ Inspired from COBS.
 * 16bit Address range
 * 16bit Data
 * Write with ack with possible of error code
-* Read with response and possible for error code.
+* Read with response with possible for error code.
 * Fixed size packet size of 8 bytes.
 * Extension flag make it possible to extend the protocol in the future.
 
-# Tiny Wire Protocol — 8‑Byte Frame Format
+# Protocol
 
 
 ---
