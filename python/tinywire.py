@@ -4,6 +4,15 @@
 SOF = 0x00
 
 class TWPacket:
+    """Tiny-wire packet. Use >= 0x0100 for custom errors"""
+    TW_ERR_NONE             = 0x0000
+    TW_ERR_INVALID_REGISTER = 0x0001
+    TW_ERR_WRITE_PROTECTED  = 0x0002
+    TW_ERR_OUT_OF_RANGE     = 0x0003
+    TW_ERR_BUSY             = 0x0004
+    TW_ERR_CRC_MISMATCH     = 0x0005
+    TW_ERR_HW_FAULT         = 0x0006
+    
     def __init__(self):
         self._raw = bytearray(8)
     
