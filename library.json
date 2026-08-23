@@ -1,0 +1,20 @@
+{
+  "name": "tiny_wire_protocol",
+  "version": "1.0.0",
+  "description": "Tiny Wire Protocol C/C++ Embedded Library",
+  "keywords": ["wire", "protocol", "communication", "serial", "embedded"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikaelsundin/tiny_wire_protocol.git"
+  },
+  "frameworks": "*",
+  "platforms": "*",
+  "build": {
+    "flags": [
+      "-Iembedded-c"
+    ],
+    "srcFilter": [
+      "+<embedded-c/**>"
+    ]
+  }
+}
