@@ -118,7 +118,7 @@ bool tw_packet_encode(uint8_t *buf, const tw_packet_t *pkt)
 
     buf[7] = 0; //CRC is handled on lower layers.
     
-    return true
+    return true;
 }
 
 
