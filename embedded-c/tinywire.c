@@ -5,7 +5,7 @@
 /**
  * @brief Decode packet
  */
-void tw_packet_decode(tw_packet_t *pkt, const uint8_t *buf)
+bool tw_packet_decode(tw_packet_t *pkt, const uint8_t *buf)
 {
     uint8_t h = buf[1];
 
@@ -52,12 +52,14 @@ void tw_packet_decode(tw_packet_t *pkt, const uint8_t *buf)
         pkt->error_code = 0;
         pkt->value      = ((uint16_t)buf[5] << 8) | buf[6];
     }
+    
+    return true;
 }
 
 /**
  * @brief Encode packet.
  */ 
-void tw_packet_encode(uint8_t *buf, const tw_packet_t *pkt)
+bool tw_packet_encode(uint8_t *buf, const tw_packet_t *pkt)
 {
     /* SOF is set later by tw_frame_encode() */
     uint8_t h = 0;
@@ -114,8 +116,9 @@ void tw_packet_encode(uint8_t *buf, const tw_packet_t *pkt)
         buf[6] = (pkt->value >> 0) & 0xFF;
     }
 
-    /* CRC is written by tw_frame_encode() */
-    buf[7] = 0;
+    buf[7] = 0; //CRC is handled on lower layers.
+    
+    return true
 }
 
 

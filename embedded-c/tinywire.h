@@ -40,8 +40,8 @@ typedef struct {
     uint16_t error_code;   /* error code (0 = no error) */
 } tw_packet_t;
 
-void tw_packet_decode(tw_packet_t *pkt, const uint8_t *buf);
-void tw_packet_encode(uint8_t *buf, const tw_packet_t *pkt);
+bool tw_packet_decode(tw_packet_t *pkt, const uint8_t *buf);
+bool tw_packet_encode(uint8_t *buf, const tw_packet_t *pkt);
 
 
 

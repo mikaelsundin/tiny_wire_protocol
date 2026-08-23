@@ -79,9 +79,19 @@ class TWPacket:
             return None
         return self._raw[5]<<8 | self._raw[6]
     
-    def as_bytes(self):
+    def encode(self):
         """Get the packet as bytes"""
         return self._raw
+    
+    @staticmethod 
+    def decode(frame, pkt=None):
+        pkt = pkt or TWPacket()
+        
+        if len(frame) != 8:
+            raise ValueError("frame not 8byte long")
+        
+        pkt._raw = frame        
+        return pkt
     
     @staticmethod
     def create_write_request(node, index, data, ack=False, pkt=None):
@@ -172,15 +182,7 @@ class TWPacket:
 
         return pkt
 
-    @staticmethod 
-    def decode(frame, pkt=None):
-        pkt = pkt or TWPacket()
-        
-        if len(frame) != 8:
-            raise ValueError("frame not 8byte long")
-        
-        pkt._raw = frame        
-        return pkt
+
         
     def __str__(self):
         """Show info"""
@@ -371,10 +373,17 @@ if __name__ == "__main__":
     print(pkt_dec)
 
 
-    packet1 = TWPacket.create_write_request(0x55, 0x1234, 0x0000, ack=False)
+    packet1 = TWPacket.create_write_request(0x55, 0x1234, 0x1002, ack=False)
     packet2 = TWPacket.create_write_request(0x55, 0x1234, 0x0000, ack=True)
     packet3 = TWPacket.create_read_request(0x55, 0x1234, 0x0000)
     
-    print(packet1)
-    print(packet2)
-    print(packet3)
+    
+    packet_raw = packet1.encode()
+    frame_raw = TWFrame.encode(packet_raw)
+    
+    print(frame_raw.hex(sep=' '))
+    
+    
+    
+    #print(packet2)
+    #print(packet3)
