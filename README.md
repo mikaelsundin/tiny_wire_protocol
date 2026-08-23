@@ -39,17 +39,17 @@ The header is constructed to not use 0x00.
 | 6    | REQ: Ack (0=Off,1=On) / RESP: Error flag  |
 | 5    | Function (0=Write, 1=Read)                |
 | 4    | Extension (0=no extension, 1=extension)   |
-| 3..0 | Zero‑pointer/Extension-args               |
+| 3..0 | Zero‑pointer                              |
 
 Bits 3..0 is set to 0x00 when calculating the CRC-8
 
-Zero-pointer (extension=0):
-Points to next zero in message, 
-zero-pointer range: 0x01 to 0x0F
+Zero-pointer:
+Points to next zero in if exist message, 
+else outside packet
 
-Extension (extension=1):
-Used for future proof the protocol
-Extension-args range: 0x00 to 0x0F
+Zzero-pointer range: 0x01 to 0x0F.
+This will create a linked list of positions with zeros 
+
 
 ---
 
